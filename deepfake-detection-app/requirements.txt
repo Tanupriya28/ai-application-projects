@@ -1,0 +1,6 @@
+flask
+tensorflow==2.13
+opencv-python
+numpy
+matplotlib
+pillow
