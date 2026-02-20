@@ -1,0 +1,15 @@
+mlenv/
+__pycache__/
+*.pyc
+
+uploads/
+faces/
+face_cam/
+history/
+outputs/
+
+*.keras
+*.h5
+*.ckpt
+*.pth
+.env
