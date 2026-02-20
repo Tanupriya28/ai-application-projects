@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="hero">
+  <p>
+    Advanced explainable deep learning system for detecting manipulated facial
+    media. Combines full-image analysis, facial-region focus, and visual heatmap
+    reasoning.
+  </p>
+  <div class="hero-actions">
+    <a href="/detect" class="primary-btn">Start Detection</a>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <h3>Full Image AI</h3>
+    <p>Detects global manipulation artifacts across the entire image.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Face Focused Analysis</h3>
+    <p>Zoomed detection concentrating on facial inconsistencies.</p>
+  </div>
+
+  <div class="feature-card">
+    <h3>Heatmap Explainability</h3>
+    <p>Visual reasoning highlighting suspicious regions.</p>
+  </div>
+</section>
+
+{% endblock %}

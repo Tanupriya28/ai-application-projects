@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Deepfake Analysis</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+
+  <body class="dark">
+    <div class="container">
+      <h1 class="title">AI Deepfake Analysis</h1>
+
+      <form method="POST" enctype="multipart/form-data" class="upload-box">
+        <input type="file" name="image" multiple required />
+        <button class="glow-btn">Analyze Images</button>
+      </form>
+
+      {% if results %}
+
+      <div class="results">
+        {% for r in results %}
+        <div class="glass-card">
+          <h2>{{ r.file }}</h2>
+
+          <div class="decision">
+            {{ r.final_result }}
+            <span class="badge">{{ r.confidence }}</span>
+          </div>
+
+          <p class="reliability">Reliability: {{ r.reliability }}</p>
+
+          <h3>Full Image Analysis</h3>
+
+          <div class="bar">
+            <div class="fill fake" style="width:{{ r.fake_prob }}%"></div>
+            <span>{{ r.fake_prob }}% Fake</span>
+          </div>
+
+          <div class="bar">
+            <div class="fill real" style="width:{{ r.real_prob }}%"></div>
+            <span>{{ r.real_prob }}% Real</span>
+          </div>
+
+          {% if r.face_fake is not none %}
+          <h3>Face Focused Analysis</h3>
+
+          <div class="bar">
+            <div class="fill fake" style="width:{{ r.face_fake }}%"></div>
+            <span>{{ r.face_fake }}% Fake</span>
+          </div>
+
+          <div class="bar">
+            <div class="fill real" style="width:{{ 100 - r.face_fake }}%"></div>
+            <span>{{ 100 - r.face_fake }}% Real</span>
+          </div>
+          {% endif %}
+
+          <h3>Indicators</h3>
+          <ul class="reasons">
+            {% for reason in r.reasons %}
+            <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+
+          <div class="tabs">
+            <button onclick="openTab(this)">Original</button>
+            <button onclick="openTab(this)">Heatmap</button>
+            <button onclick="openTab(this)">Face</button>
+          </div>
+
+          <div class="tab-content show">
+            <img src="/{{ r.original }}" />
+          </div>
+
+          <div class="tab-content">
+            <img src="/{{ r.cam }}" />
+          </div>
+
+          <div class="tab-content">
+            {% if r.face %}
+            <img src="/{{ r.face }}" />
+            {% else %} No face detected {% endif %}
+          </div>
+
+          <a
+            class="report"
+            href="/reports/{{ r.file.replace('.jpg','.pdf') }}"
+            download
+          >
+            Download Report
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

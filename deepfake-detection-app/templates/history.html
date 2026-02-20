@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+
+<h1 class="detect-title">Analysis History</h1>
+
+{% for h in history %}
+<div class="result-card">
+  <h3>{{ h.file }}</h3>
+  <p>{{ h.final_result }} — {{ h.fake_prob }}%</p>
+  <p>{{ h.time }}</p>
+</div>
+{% endfor %} {% endblock %}

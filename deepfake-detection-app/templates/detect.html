@@ -1,0 +1,165 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="detect-container">
+  <h1 class="detect-title">AI Deepfake Analysis</h1>
+  <div class="upload-spacer"></div>
+
+  <form method="POST" enctype="multipart/form-data" class="upload-box">
+    <div id="loader" class="loader hidden"></div>
+    <label class="file-input">
+      <input
+        type="file"
+        name="image"
+        multiple
+        required
+        onchange="updateCount(this)"
+      />
+      <span id="fileLabel">Select Images</span>
+    </label>
+    <button type="submit" class="primary-btn">Analyze</button>
+  </form>
+
+  {% if results %} {% for r in results %}
+  <div class="result-card">
+    <!-- LEFT PANEL -->
+    <div class="result-left">
+      <h2 class="file-name">{{ r.file }}</h2>
+
+      <div class="decision-row">
+        <span class="decision {{ r.final_result|lower }}">
+          {{ r.final_result }}
+        </span>
+        <span class="confidence">{{ r.confidence }}</span>
+      </div>
+      <p class="meta">Reliability: <b>{{ r.reliability }}</b></p>
+
+      <!-- FULL IMAGE -->
+      <div class="analysis-block">
+        <h4>Full Image Analysis</h4>
+        <p class="explain-text">
+          AI scans the entire image for global manipulation artifacts.
+        </p>
+
+        <div class="prob-row">
+          <span class="label fake-label">Fake</span>
+          <div class="bar">
+            <div
+              class="bar-fill fake-bar"
+              style="width: {{ r.fake_prob|round(2) }}%"
+            >
+              {{ r.fake_prob|round(2) }}%
+            </div>
+          </div>
+        </div>
+        <div class="prob-row">
+          <span class="label real-label">Real</span>
+          <div class="bar">
+            <div
+              class="bar-fill real-bar"
+              style="width: {{ r.real_prob|round(2) }}%"
+            >
+              {{ r.real_prob|round(2) }}%
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FACE -->
+      {% if r.face_fake is not none %}
+      <div class="analysis-block">
+        <h4>Face Focused Analysis</h4>
+        <p class="explain-text">
+          AI zooms into facial region to detect local inconsistencies.
+        </p>
+
+        <div class="prob-row">
+          <span class="label fake-label">Fake</span>
+          <div class="bar">
+            <div
+              class="bar-fill fake-bar"
+              style="width: {{ r.face_fake|round(2) }}%"
+            >
+              {{ r.face_fake|round(2) }}%
+            </div>
+          </div>
+        </div>
+        <div class="prob-row">
+          <span class="label real-label">Real</span>
+          <div class="bar">
+            <div
+              class="bar-fill real-bar"
+              style="width: {{ r.face_real|round(2) }}%"
+            >
+              {{ r.face_real|round(2) }}%
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- REASONS -->
+      <div class="analysis-block">
+        <h4>Indicators</h4>
+        <ul class="reasons">
+          {% for reason in r.reasons %}
+          <li>{{ reason }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <a
+        href="/reports/{{ r.file.replace('.jpg','.pdf') }}"
+        class="secondary-btn"
+      >
+        Download Report
+      </a>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="result-right">
+      <div class="tabs">
+        <button onclick="showTab(this,'orig{{loop.index}}')" class="active">
+          Original
+        </button>
+        <button onclick="showTab(this,'cam{{loop.index}}')">Heatmap</button>
+        {% if r.face %}
+        <button onclick="showTab(this,'face{{loop.index}}')">Face</button>
+        {% endif %} {% if r.face_cam %}
+        <button onclick="showTab(this,'facecam{{loop.index}}')">
+          Face Heatmap
+        </button>
+        {% endif %}
+      </div>
+
+      <!--  FIXED IMAGE PATHS BELOW -->
+
+      <div id="orig{{loop.index}}" class="tab-content active">
+        <img src="{{ url_for('uploaded_file', filename=r.file) }}" />
+      </div>
+
+      <div id="cam{{loop.index}}" class="tab-content">
+        <img src="{{ url_for('uploaded_file', filename='cam_' + r.file) }}" />
+        <div class="legend">
+          <p><span class="l red"></span> High manipulation</p>
+          <p><span class="l yellow"></span> Moderate anomaly</p>
+          <p><span class="l blue"></span> Natural region</p>
+        </div>
+      </div>
+
+      {% if r.face %}
+      <div id="face{{loop.index}}" class="tab-content">
+        <img src="{{ url_for('face_file', filename='face_' + r.file) }}" />
+      </div>
+      {% endif %} {% if r.face_cam %}
+      <div id="facecam{{loop.index}}" class="tab-content">
+        <img
+          src="{{ url_for('face_cam_file', filename='facecam_' + r.file) }}"
+        />
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %} {% endif %}
+</section>
+
+{% endblock %}

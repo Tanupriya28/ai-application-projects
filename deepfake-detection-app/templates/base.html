@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DeepfakeAI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% set time = range(1)|random %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style2.css') }}?v=999"
+    />
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">Deepfake<span class="ai">AI</span></div>
+      <div class="nav-links">
+        <a href="/" class="nav-btn">Home</a>
+        <a href="/detect" class="nav-btn outline">Detect</a>
+        <a href="/history">History</a>
+      </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <script>
+      function showTab(btn, id) {
+        let parent = btn.closest(".result-right");
+        parent
+          .querySelectorAll(".tab-content")
+          .forEach((t) => t.classList.remove("active"));
+        parent
+          .querySelectorAll(".tabs button")
+          .forEach((b) => b.classList.remove("active"));
+        parent.querySelector("#" + id).classList.add("active");
+        btn.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
