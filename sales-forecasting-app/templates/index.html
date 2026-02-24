@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Sales Forecast Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <h1>📈 Sales Forecasting System</h1>
+
+    <form method="post">
+      <select name="store">
+        {% for s in stores %}
+        <!-- prettier-ignore -->
+        <option value="{{ s }}" {% if s == store %}selected{% endif %}>
+          Store {{s}}
+        </option>
+        {% endfor %}
+      </select>
+
+      <select name="model">
+        <option>LSTM</option>
+        <option>ARIMA</option>
+        <option>Ensemble</option>
+      </select>
+
+      <select name="horizon">
+        <option value="4">4 weeks</option>
+        <option value="12">12 weeks</option>
+        <option value="24">24 weeks</option>
+      </select>
+
+      <button>Update</button>
+    </form>
+
+    <div class="cards">
+      <div>RMSE<br /><b>{{rmse}}</b></div>
+      <div>MAE<br /><b>{{mae}}</b></div>
+      <div>Horizon<br /><b>{{horizon}} weeks</b></div>
+    </div>
+
+    <canvas id="chart"></canvas>
+
+    <a href="/download">⬇ Download Data</a>
+
+    <script>
+      const labels = {{dates | safe}};
+      const actual = {{actual | safe}};
+      const forecast = {{forecast | safe}};
+
+      new Chart(document.getElementById("chart"),{
+      type:"line",
+      data:{
+      labels:labels,
+      datasets:[
+      {label:"Actual",data:actual,borderColor:"blue"},
+      {label:"Forecast",data:forecast,borderColor:"orange"}
+      ]
+      }
+      })
+    </script>
+  </body>
+</html>
