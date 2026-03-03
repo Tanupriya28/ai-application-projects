@@ -1,5 +1,5 @@
 
-# 🚀 AI Data Insights Studio
+#  AI Data Insights Studio
 
 An end-to-end AI-powered data analysis platform that allows users to upload datasets and instantly explore, clean, query, visualize, model, and interact with data using natural language.
 
@@ -14,7 +14,7 @@ into a single unified workspace.
 
 ---
 
-## 🎯 Project Objective
+##  Project Objective
 
 Real-world data is messy and requires multiple tools to analyze effectively.
 
@@ -26,9 +26,9 @@ From exploration to modeling to querying — everything is handled in one platfo
 
 ---
 
-# 🧠 Core Features
+#  Core Features
 
-## 📊 Automatic Exploratory Data Analysis (EDA)
+##  Automatic Exploratory Data Analysis (EDA)
 
 - Dataset overview & schema detection  
 - Descriptive statistics  
@@ -39,7 +39,7 @@ From exploration to modeling to querying — everything is handled in one platfo
 
 ---
 
-## 🧹 Intelligent Data Cleaning
+##  Intelligent Data Cleaning
 
 Automatically performs:
 
@@ -52,7 +52,7 @@ Provides a transparent cleaning report for users.
 
 ---
 
-## 🤖 LLM-Powered Data Chatbot
+##  LLM-Powered Data Chatbot
 
 Users can ask natural language questions about their dataset.
 
@@ -71,7 +71,7 @@ This makes data analysis accessible without manual coding.
 
 ---
 
-## 📈 AI-Generated Visualizations
+##  AI-Generated Visualizations
 
 Using LLM + Plotly:
 
@@ -82,7 +82,7 @@ Using LLM + Plotly:
 
 ---
 
-## 🗄 SQL Analytics Workspace
+##  SQL Analytics Workspace
 
 Includes a built-in SQL engine:
 
@@ -96,7 +96,7 @@ Bridges traditional SQL analytics with modern AI tools.
 
 ---
 
-## 🧠 AutoML Pipeline (Production-Style)
+##  AutoML Pipeline (Production-Style)
 
 ### Automatic task detection
 - Classification vs Regression
@@ -130,7 +130,7 @@ Classification:
 
 ---
 
-## 📉 Forecasting Module
+##  Forecasting Module
 
 - Detects date-based columns
 - Fits trend-based forecasting model
@@ -140,7 +140,7 @@ Classification:
 
 ---
 
-# 🏗 System Architecture
+#  System Architecture
 CSV Upload
 ↓
 EDA + Cleaning
@@ -157,7 +157,7 @@ LLM code runs in an isolated execution environment for safety.
 
 ---
 
-# 🛠 Tech Stack
+#  Tech Stack
 
 | Layer | Technology |
 |------|-----------|
@@ -173,13 +173,13 @@ LLM code runs in an isolated execution environment for safety.
 
 ---
 
-# 🚀 How to Run
+#  How to Run
 git clone <repo-url>
 cd project-folder
 pip install -r requirements.txt
 streamlit run app.py
 ________________________________________
-# 📂 Project Structure
+#  Project Structure
 app.py
 backend.py
 llm_agent.py
@@ -188,14 +188,14 @@ requirements.txt
 screenshots
 README.md
 
-# 📈 Future Enhancements
+# Future Enhancements
 •	SHAP explainability
 •	Advanced forecasting models
 •	Cloud deployment
 •	Dataset versioning
 •	Dashboard performance tracking
 ________________________________________
-# 👨‍💻 Author
+# Author
 Built as a full-stack AI data analytics system to demonstrate:
 •	Machine learning pipelines
 •	Data engineering workflows
