@@ -1,11 +1,11 @@
 
-# 🧠 Explainable Deepfake Image Detection System
+#  Explainable Deepfake Image Detection System
 
 An end-to-end AI system for detecting AI-generated deepfake images using Transfer Learning with EfficientNet, enhanced with Explainable AI (Grad-CAM) and deployed as a real-time web application.
 
 ---
 
-## 🚨 Problem Statement
+##  Problem Statement
 
 Deepfake images generated using advanced AI techniques are increasingly being used for:
 
@@ -18,7 +18,7 @@ This project aims to build an automated, accurate, and explainable deepfake dete
 
 ---
 
-## 🌍 Applications
+##  Applications
 
 - Social media content moderation  
 - Digital forensic investigations  
@@ -28,7 +28,7 @@ This project aims to build an automated, accurate, and explainable deepfake dete
 
 ---
 
-## 📁 Dataset
+##  Dataset
 
 - Approximately **10,000 images**
 - Two classes: **Real** and **Fake**
@@ -42,7 +42,7 @@ This project aims to build an automated, accurate, and explainable deepfake dete
 
 ---
 
-## 🧪 Baseline CNN Model
+##  Baseline CNN Model
 
 A custom Convolutional Neural Network was implemented as a baseline:
 
@@ -57,7 +57,7 @@ A custom Convolutional Neural Network was implemented as a baseline:
 
 ---
 
-## 🚀 Transfer Learning with EfficientNet
+##  Transfer Learning with EfficientNet
 
 - Used **EfficientNetB0 pretrained on ImageNet**  
 - Leveraged pretrained visual features  
@@ -65,7 +65,7 @@ A custom Convolutional Neural Network was implemented as a baseline:
 
 ---
 
-## ⚙️ Data Augmentation
+##  Data Augmentation
 
 - Random horizontal flipping  
 - Random rotation  
@@ -76,7 +76,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## ❄️ Freezing & Fine Tuning Strategy
+##  Freezing & Fine Tuning Strategy
 
 ### Step 1 – Freeze backbone  
 - Trained only classifier layers  
@@ -89,7 +89,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## 📈 Final Performance
+##  Final Performance
 
 - Validation Accuracy: **~85–86%**  
 - Stable learning curves  
@@ -97,7 +97,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## 🔍 Explainable AI (Grad-CAM)
+##  Explainable AI (Grad-CAM)
 
 - Highlights manipulated facial regions  
 - Improves model transparency  
@@ -105,7 +105,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## 🧠 Forensic Intelligence Layer
+##  Forensic Intelligence Layer
 
 - Full-image + face-based predictions  
 - Confidence estimation  
@@ -115,7 +115,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## 🌐 Web Application Features
+## Web Application Features
 
 - Batch upload support  
 - Real-time inference  
@@ -126,7 +126,7 @@ Benefits: reduced overfitting and better real-world robustness.
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 deepfake-ai/
 │
 ├── templates/
@@ -146,23 +146,23 @@ deepfake-ai/
 
 ---
 
-## ⚡ Installation
+##  Installation
 
-### 1️⃣ Clone repository
+### 1️. Clone repository
 git clone https://github.com/yourusername/deepfake-ai.git
 cd deepfake-ai
-### 2️⃣ Create virtual environment 
+### 2️. Create virtual environment 
 python -m venv venv
 source venv/bin/activate   # Windows: venv\Scripts\activate
-### 3️⃣ Install dependencies
+### 3️. Install dependencies
 pip install -r requirements.txt
 ________________________________________
-## ▶️ Running the Application
+##  Running the Application
 python app.py
 Then open:
 http://127.0.0.1:5000/
 ________________________________________
-## 🛠 Technologies Used
+##  Technologies Used
 •	Python
 •	TensorFlow / Keras
 •	EfficientNet
@@ -172,7 +172,7 @@ ________________________________________
 •	ReportLab
 •	HTML, CSS, JavaScript
 ________________________________________
-## 🔮 Future Improvements
+##  Future Improvements
 •	Larger datasets
 •	Video deepfake detection
 •	Live webcam processing
