@@ -59,12 +59,16 @@ def metrics(y, p):
     mae = np.mean(np.abs(y - p))
     return round(float(rmse), 2), round(float(mae), 2)
 
-
 def find_anomalies(y, p):
-    mask = ~np.isnan(p)
-    res = y[mask] - p[mask]
-    return np.where(np.abs(res) > 2 * np.std(res))[0].tolist()
 
+    mean = np.mean(y)
+    std = np.std(y)
+
+    z_scores = (y - mean) / std
+
+    anomalies = np.where(np.abs(z_scores) > 2.5)[0]
+
+    return anomalies.tolist()
 
 # =====================
 # Routes
