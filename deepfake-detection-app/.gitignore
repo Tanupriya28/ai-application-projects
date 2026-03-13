@@ -13,3 +13,7 @@ outputs/
 *.ckpt
 *.pth
 .env
+
+model/
+*.keras
+*.h5
